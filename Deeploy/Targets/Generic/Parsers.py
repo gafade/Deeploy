@@ -1138,7 +1138,18 @@ class MulParser(NodeParser):
             self.operatorRepresentation[outputs[idx]] = ctxt.lookup(outputNode.name).name
 
         self.operatorRepresentation['size'] = np.prod(ctxt.lookup(node.inputs[0].name).shape)
+        self.operatorRepresentation['shapeA_len']=len(ctxt.lookup(node.inputs[0].name).shape)
+        self.operatorRepresentation['shapeA']="{"
+        for dim in range(self.operatorRepresentation['shapeA_len']):
+            self.operatorRepresentation['shapeA']+=str(ctxt.lookup(node.inputs[0].name).shape[dim])+","#prepare array initialization in cpp
+        self.operatorRepresentation['shapeA']+="}"
+
         self.operatorRepresentation['sizeB'] = np.prod(ctxt.lookup(node.inputs[1].name).shape)
+        self.operatorRepresentation['shapeB_len']=len(ctxt.lookup(node.inputs[1].name).shape)
+        self.operatorRepresentation['shapeB']="{"
+        for dim in range(self.operatorRepresentation['shapeB_len']):
+            self.operatorRepresentation['shapeB']+=str(ctxt.lookup(node.inputs[1].name).shape[dim])+","#prepare array initialization in cpp
+        self.operatorRepresentation['shapeB']+="}"
 
         return ctxt, True
 
