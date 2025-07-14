@@ -338,11 +338,13 @@ class MulLayer(ONNXLayer):
 
         if inputShapes[1] == () or inputShapes[1] == []:
             inputShapes[1] = (1,)
+        if inputShapes[0] == () or inputShapes[0] == []:
+            inputShapes[0] = (1,)
 
-        if len(inputShapes[0]) > len(inputShapes[1]):
-            inputShapes[1] = inputShapes[0]
-        else:
-            inputShapes[0] = inputShapes[1]
+        #if len(inputShapes[0]) > len(inputShapes[1]):#multibroadcasting has been implemented
+        #    inputShapes[1] = inputShapes[0]
+        #else:
+        #    inputShapes[0] = inputShapes[1]
         return (inputShapes, outputShapes)
 
     def computeOps(self):

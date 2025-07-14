@@ -64,6 +64,7 @@
 #include "kernel/Layernorm.h"
 #include "kernel/MatMul.h"
 #include "kernel/MaxPool.h"
+#include "kernel/Mul.h"
 #include "kernel/RMSNorm.h"
 #include "kernel/RQDiv.h"
 #include "kernel/RQGELU.h"
