@@ -43,7 +43,7 @@
 
 void Mul_fp32_fp32( const float32_t *__restrict__ pSrcA,
                     const float32_t *__restrict__ pSrcB,
-                    const float32_t *__restrict__ pDstC,
+                    float32_t *__restrict__ pDstC,
                     int32_t max_len, int32_t* shape1, int32_t* shape2);
 
 
