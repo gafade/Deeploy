@@ -55,8 +55,21 @@ class _MulTemplate(NodeTemplate):
 referenceTemplate = _MulTemplate("""
 // Mul (Name: ${nodeName}, Op: ${nodeOp})
 BEGIN_SINGLE_CORE
-    for (uint32_t i=0;i<${size};i++){
-        ${C}[i] = ((${A}[i] + ${A_offset}) * (${B}[i] + ${B_offset}) + ${C_offset});
-    }
+void* ref_${C}_${A} = ${A};
+void* ref_${C}_${B} = ${B};
+${C_type.typeName} ref_${C}_${C} = ${C};
+
+int32_t inputA_${C}[${shapeA_len}]=${shapeA};
+int32_t inputB_${C}[${shapeB_len}]=${shapeB};
+
+Mul_s_s_s${C_type.referencedType.typeWidth}(
+ref_${C}_${A} ,${A_type.referencedType.typeWidth}, ${A_offset}, 
+ref_${C}_${B},${B_type.referencedType.typeWidth}, ${B_offset}, 
+ref_${C}_${C},${C_offset}, 
+inputA_${C}, ${shapeA_len},
+inputB_${C}, ${shapeB_len}
+);
+
+
 END_SINGLE_CORE
 """)

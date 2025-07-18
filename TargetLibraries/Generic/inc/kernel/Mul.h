@@ -47,7 +47,17 @@ void Mul_fp32_fp32( const float32_t *__restrict__ pSrcA,
                     int32_t* inputA, int32_t shapeA_len,
                     int32_t* inputB,  int32_t shapeB_len);
 
+void Mul_s8_s8_s32( const int8_t *__restrict__ pSrcA, int32_t A_offset,
+                    const int8_t *__restrict__ pSrcB, int32_t B_offset,
+                    int32_t *__restrict__ pDstC, int32_t C_offset,
+                    int32_t* inputA, int32_t shapeA_len,
+                    int32_t* inputB,  int32_t shapeB_len);
 
+void Mul_s_s_s32( const void *__restrict__ pSrcA,int32_t typeA, int64_t A_offset,
+                    const void *__restrict__ pSrcB,int32_t typeB, int64_t B_offset,
+                    int32_t *__restrict__ pDstC, int64_t C_offset,
+                    int32_t* inputA, int32_t shapeA_len,
+                    int32_t* inputB,  int32_t shapeB_len);
 
 
 #endif //__DEEPLOY_BASIC_MATH_MUL_KERNEL_HEADER_
